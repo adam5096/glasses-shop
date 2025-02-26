@@ -1,0 +1,401 @@
+/* 匯入英文、中文字體 */
+@import url("https://fonts.google.com/specimen/Roboto?query=roboto");
+
+@import url("https://fonts.google.com/noto/specimen/Noto+Sans+TC");
+
+/* declare layers in order of priority */
+/* priority goes higher toward right */
+@layer reset, base, navigation, components;
+
+@layer reset {
+  * {
+    /* outline: auto; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    font-family: "Roboto", "Noto Sans TC", sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* main {
+    width: 100%;
+  } */
+
+  /* 修正選擇器並優化版心設計 */
+  footer section,
+  header nav {
+    /* 改用 max-width 設定版心上限 */
+    max-width: 1296px;
+    /* 寬度自適應，但不超過 1296px */
+    width: 100%;
+    /* 水平置中 */
+    margin: 0 auto;
+  }
+}
+
+@layer base {
+  header {
+    width: 100%;
+    height: 80px;
+    background: #aa0601 0% 0% no-repeat padding-box;
+    opacity: 1;
+  }
+
+  main {
+    --primary-color: #650300;
+    --button-bg: #aa0601;
+  }
+}
+
+@layer navigation {
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    line-height: 80px;
+    width: 100%;
+    /* overflow: hidden; */
+
+    .logo {
+      width: auto;
+      overflow: hidden;
+      display: block;
+      padding: 16px 0;
+
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .nav-links {
+      /* outline: 5px; */
+      display: flex;
+      justify-content: flex-end;
+      color: #fff;
+      min-width: 0;
+
+      li {
+        font-size: 20px;
+        /* outline: auto; */
+        width: auto;
+        height: 30px;
+        padding-left: 50px;
+        list-style: none;
+        color: #fff;
+        /* 防止文字換行，保持單一行 */
+        white-space: nowrap;
+        a {
+          text-decoration: none;
+          color: inherit;
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+@layer components {
+  main {
+    width: 100%;
+    /* outline: auto; */
+    padding-bottom: 80px;
+
+    section.location {
+      /* outline: auto; */
+      width: 100vw;
+      margin: 0 auto;
+
+      & .content {
+        /* outline: auto; */
+        width: 100%;
+        max-width: 1296px; /* 與 reset 中的版心一致 */
+        margin: 0 auto;
+
+        & h1 {
+          /* outline: auto; */
+          font-size: 48px;
+          font-weight: bold;
+          line-height: 72px;
+          padding-left: 16px;
+          /* background-color: chocolate; */
+          margin-top: 80px;
+          border-left: 8px solid #9f1213;
+        }
+
+        & form {
+          /* outline: auto; */
+          max-width: 416px;
+          width: 100%;
+          margin-top: 33px;
+          line-height: 36px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          & label {
+            margin-right: 28px;
+            font-size: 24px;
+            line-height: 36px;
+          }
+
+          & select {
+            flex: 1 1 0;
+            /* 直接影響 option 中文字尺寸 */
+            font-size: 18px;
+            /* 選相框高度 */
+            height: 38px;
+            width: 312px;
+
+            & option {
+              opacity: 0.75;
+            }
+
+            /* 移除原生箭頭 */
+            -webkit-appearance: none; /* 支援 Chrome/Safari */
+            -moz-appearance: none; /* 支援 Firefox */
+            appearance: none; /* 標準語法 */
+
+            /* 基本樣式 */
+            /* 右側留空間給箭頭 */
+            padding: 0 12px;
+            border: 2px solid #ced4da;
+            border-radius: 20px;
+
+            /* 自訂箭頭圖片 */
+            background-image: url("./img-location/location-arrow_downward_alt.png"); /* 替換成您的箭頭圖片 URL */
+            background-repeat: no-repeat;
+            background-position: right 0 center; /* 箭頭靠右 10px 置中 */
+            background-size: 30px; /* 箭頭圖片大小 */
+            /* 使用 class 針對特定 option */
+            & .highlight {
+              background-color: #ffd700; /* 金黃色 */
+            }
+
+            & .danger {
+              background-color: #ff6347; /* 番茄紅 */
+            }
+          }
+        }
+
+        & div.location {
+          /* outline: auto; */
+          margin-top: 40px;
+          width: auto;
+          height: auto;
+          /* background-color: chocolate; */
+
+          display: grid;
+          gap: 24px;
+          grid-template-columns: repeat(3, 416px);
+          grid-template-rows: 504px;
+
+          & .location-card {
+            width: 100%;
+
+            & .img-frame {
+              width: 416px;
+              /* height: 48px; */
+              overflow: hidden; /* 裁切任何溢出內容 */
+              display: block; /* 確保容器行為正常 */
+              & img {
+                width: 100%; /* 填滿容器寬度 */
+                height: 100%; /* 填滿容器高度 */
+                /* 移除底部間隙 */
+                object-fit: cover;
+                display: block;
+              }
+            }
+
+            & h2 {
+              /* outline: auto; */
+              font-size: 24px;
+              line-height: 36px;
+              padding-left: 24px;
+              padding-top: 8px;
+              padding-bottom: 8px;
+            }
+
+            & .info {
+              /* outline: auto; */
+              padding: 16px 24px;
+              font-size: 20px;
+              line-height: 30px;
+
+              & .sub-info {
+                /* outline: auto; */
+                width: auto;
+                display: flex;
+
+                & svg {
+                  /* outline: auto; */
+                  position: relative;
+                  left: 2px;
+                  top: 4px;
+                  margin-right: 11px;
+                }
+              }
+            }
+
+            & button {
+              width: 100%;
+              height: auto;
+              font-size: 19px;
+              line-height: 59px;
+              color: #fff;
+              background-color: #000;
+              border: none;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    outline: auto;
+    width: 100vw;
+    --button-bg: #aa0601;
+    background-color: var(--button-bg);
+    color: #fff;
+
+    & section.footer {
+      max-width: 1296px; /* 與 reset 中的版心一致 */
+      margin: 0 auto; /* 置中內部內容 */
+
+      & .footer-links {
+        width: auto;
+        /* outline: auto; */
+        display: flex;
+        justify-content: space-between;
+
+        & .left {
+          /* outline: auto; */
+          width: auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-block-start: 48px;
+
+          & li {
+            list-style: none;
+            font-size: 16px;
+            line-height: 24px;
+            margin-inline-end: 48px;
+          }
+        }
+
+        & .right {
+          /* outline: auto; */
+          width: auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 48px;
+          gap: 32px;
+
+          & .fb,
+          .ig,
+          .line {
+            width: 48px;
+            height: 48px;
+            overflow: hidden; /* 裁切任何溢出內容 */
+            display: block; /* 確保容器行為正常 */
+
+            & a {
+              text-decoration: none;
+              & img {
+                width: 100%; /* 填滿容器寬度 */
+                height: 100%; /* 填滿容器高度 */
+                /* 移除底部間隙 */
+                object-fit: cover;
+                display: block;
+              }
+            }
+          }
+        }
+      }
+
+      & .footer-contact {
+        /* outline: auto; */
+
+        & .phone,
+        .mail {
+          /* outline: auto; */
+          display: flex;
+          justify-content: flex-start;
+        }
+
+        & .container {
+          width: 36px;
+          height: 36px;
+          overflow: hidden; /* 裁切任何溢出內容 */
+          display: block; /* 確保容器行為正常 */
+          padding: 16px 0 0 8px;
+          & i {
+            text-align: center;
+            align-items: center;
+            width: 100%; /* 填滿容器寬度 */
+            height: 100%; /* 填滿容器高度 */
+            /* 移除底部間隙 */
+            object-fit: cover;
+            display: block;
+            padding-right: 20px;
+          }
+        }
+
+        & p {
+          font-size: 36px;
+          line-height: 54px;
+        }
+      }
+
+      & .divide {
+        width: 100%;
+        height: 1px;
+        background-color: #fff;
+        margin: 32px 0;
+      }
+
+      & .footer-copyright {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 32px;
+
+        & p {
+          font-size: 16px;
+          line-height: 24px;
+        }
+
+        & ul {
+          display: flex;
+          & li {
+            font-size: 14px;
+            line-height: 21px;
+            list-style: none;
+            /* padding-left: 48px; */
+
+            & a {
+              text-decoration: none;
+              padding-left: 48px;
+            }
+
+            & a:link,
+            a:visited {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
