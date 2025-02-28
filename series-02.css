@@ -460,6 +460,10 @@
           /* margin-top: 48px; */
           gap: 32px;
 
+          @media (max-width: 820px){
+            gap: 16px;
+          }
+
           @media (max-width: 650px) {
             gap: 8px;
             position: absolute;
@@ -594,6 +598,7 @@
               /* outline: auto; */
               text-decoration: none;
               padding-left: 48px;
+              word-break: keep-all;
 
               @media (max-width: 650px) {
                 padding-left: 0;
