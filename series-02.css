@@ -236,7 +236,7 @@
         & li:has(a:hover)::before {
           /* 直接移到右邊並飛出 */
           transform: translate(600px) rotate(30deg);
-          transition: transform 2s ease;
+          transition: transform 1s ease;
         }
       }
     }

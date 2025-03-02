@@ -137,6 +137,16 @@
 }
 
 @layer components {
+  /* 動畫定義 */
+  @keyframes fallIn {
+    0% {
+      transform: translateY(-100vh); /* 從 viewport 上方開始 */
+    }
+    100% {
+      transform: translateY(0); /* 停在 viewport 頂部對齊位置 */
+    }
+  }
+
   .hero {
     /* width: 100%; */
     width: 100%;
@@ -149,6 +159,11 @@
     background-position: top left;
     background-repeat: no-repeat;
     background-size: cover;
+
+    /* 自由落體的加速度曲線 */
+    /* forwards 動畫靜止在最後一貞 */
+    animation: fallIn 1s forwards; /* 總動畫時間 */
+    animation-timing-function: ease-out; /* 下落階段加速 */
 
     @media (max-width: 821px) {
       background-image: url("./img-index/sec-home/sec-home-header-sm.png");
@@ -220,12 +235,28 @@
     }
   }
 
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      scale: 0.5;
+    }
+
+    100% {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
   .features {
     width: 100vw;
     margin: 0 auto; /* 置中內部內容 */
     padding-top: 80px;
     background-color: #fbf2f2;
     padding-bottom: 104px;
+
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 35%;
 
     & h2 {
       width: auto;
@@ -314,6 +345,18 @@
     }
   }
 
+  @keyframes enterFromLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
   .classical {
     width: 100vw;
 
@@ -324,6 +367,10 @@
     /* 改使用 padding-block-start，才會符合設計稿要求的排版 + 著色需求範圍*/
     padding-block: 80px;
     background-color: var(--bg-color);
+
+    animation: enterFromLeft linear forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
 
     & h2 {
       width: auto;
@@ -383,12 +430,26 @@
     }
   }
 
+  @keyframes enterFromRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
   .co-branded {
     width: 100%;
-
     padding-block-start: 80px;
-
     background-image: url("./img-index/sec-coBranded/sec-coBranded-index-bg.png");
+
+    animation: enterFromRight linear forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
 
     & h2 {
       width: 100%;
@@ -474,10 +535,26 @@
     }
   }
 
+  @keyframes enterFromBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .testimonial {
     width: 100vw;
     padding-block: 80px;
     --date-color: #707070;
+
+    animation: enterFromBottom linear forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 45%;
 
     & h2 {
       width: auto;
