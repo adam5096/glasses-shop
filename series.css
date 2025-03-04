@@ -331,11 +331,15 @@
               /* 修飾圖片底部與畫框之間的白縫隙 */
               display: block;
             }
-            /* & img:hover {
-              transition: all 0.3s ease;
+            & img:hover {
+              transition: all 0.4s ease;
               border-radius: 50%;
+              outline: auto;
+              outline-color: #aa0601;
+              outline-width: 5px;
+              outline-style: solid;
               cursor: pointer;
-            } */
+            }
           }
 
           & .text {

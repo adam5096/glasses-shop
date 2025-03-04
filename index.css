@@ -374,7 +374,7 @@
     padding-block: 80px;
     background-color: var(--bg-color);
 
-    animation: enterFromLeft ease-in-out forwards;
+    animation: enterFromLeft ease forwards;
     animation-timeline: view();
     animation-range: entry 0% cover 25%;
 
@@ -405,6 +405,8 @@
       }
 
       & .card {
+        width: 100%;
+        position: relative;
         @media (max-width: 821px) {
           width: 100%;
           margin: 0 auto;
