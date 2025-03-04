@@ -137,6 +137,19 @@
 }
 
 @layer components {
+  @keyframes spin {
+    0% {
+      --angle: 0deg;
+    }
+    100% {
+      --angle: 360deg;
+    }
+  }
+  @property --angle {
+    syntax:'<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
   .blog {
     --post-textColor: #555555;
 
@@ -244,6 +257,7 @@
       }
 
       & .posts {
+        width: 100%;
         display: flex;
         flex-direction: column;
         gap: 60px;
@@ -252,7 +266,7 @@
           width: 100%;
           display: flex;
           justify-content: space-between;
-          gap: 24px;
+          /* gap: 24px; */
           position: relative;
 
           @media (max-width: 651px) {
@@ -280,6 +294,8 @@
           & .info {
             width: 100%;
             height: 400px;
+            background-color: #fff;
+            padding: 24px;
             overflow: hidden;
             flex: 1;
             @media (max-width: 821px) {
@@ -385,6 +401,30 @@
               /* more END */
             }
           }
+        }
+
+        & .card::after, .card::before {
+          content: '';
+          position: absolute;
+          background: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+          /* background-color: blue; */
+          width: 100%;
+          height: 100%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: -1;
+          padding: 3px;
+          border-radius: 10px;
+          animation-name: spin;
+          animation-duration: 3s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+
+        & .card::before {
+          filter: blur(1.5rem);
+          opacity: 0.5;
         }
       }
     }
